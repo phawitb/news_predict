@@ -7,6 +7,8 @@ from transformers import AutoModelForSequenceClassification
 import torch
 import torch.nn.functional as F     
 import sys
+import datetime
+import csv
 
 # Batch_size = int(sys.argv[1])
 # print('Batch_size',Batch_size)
@@ -30,6 +32,8 @@ print('Total Data unlabeled',len(myresult))
 
 ID = []
 content_list = []
+i = 0
+t = time.time()
 for x in myresult:
     ID.append(str(x[0]))
     content_list.append(str(x[1]))  #news_title
@@ -41,10 +45,15 @@ for x in myresult:
         ai_domain = model.predict_domain(content_list)
 
         print('-'*10)
-        print(ID,ai_useful_pct,ai_creative_pct,ai_domain,ai_oganic_news)
+        print(i,time.time()-t,datetime.datetime.now(),ID)    #,ai_useful_pct,ai_creative_pct,ai_domain,ai_oganic_news)
+        with open('/home/agentai/phawit/news_predict/log.csv', 'a') as f:
+            writer = csv.writer(f)
+            writer.writerow([i,time.time()-t,datetime.datetime.now()])
+        i += 1
+        t = time.time()
+
         update_db_list(ID,ai_useful_pct,ai_creative_pct,ai_domain,ai_oganic_news)
 
         
         ID = []
         content_list = []
-    
