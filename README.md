@@ -10,9 +10,10 @@
   
 **step3 : loadmodels**  
 python3 load_models.py  
-step3 : edit path in config.py  
   
-**step4 : set cron job**  
+**step4 : edit path in config.py**  
+  
+**step5 : set cron job**  
 which python3 >> /usr/bin/python3   
   
 crontab -e  
