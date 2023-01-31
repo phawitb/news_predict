@@ -1,17 +1,18 @@
 # news_predict
   
-step1 : git clone https://github.com/phawitb/news_predict.git  
+**step1 :** git clone https://github.com/phawitb/news_predict.git  
   
-step2 : install library  
+**step2 : install library**  
   pip3 install gdown  
   pip3 install transformers  
   pip install torchvision  
   pip3 install emoji  
   
-step2 : python3 load_models.py  
+**step3 : loadmodels**  
+python3 load_models.py  
 step3 : edit path in config.py  
   
-step4 : set cron job  
+**step4 : set cron job**  
 which python3 >> /usr/bin/python3   
   
 crontab -e  
@@ -24,7 +25,7 @@ crontab -l
 /etc/init.d/cron start  
   
   
-model >> https://drive.google.com/drive/folders/1rsmgf633meVZNNip_PJwFJRECPu0whMz  
+**model** >> https://drive.google.com/drive/folders/1rsmgf633meVZNNip_PJwFJRECPu0whMz  
   
 -------------------------------------------------------------
 
