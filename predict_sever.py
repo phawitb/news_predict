@@ -9,6 +9,9 @@ import torch.nn.functional as F
 import sys
 import datetime
 import csv
+import configure as conf
+
+path = conf.path
 
 # Batch_size = int(sys.argv[1])
 # print('Batch_size',Batch_size)
@@ -46,7 +49,7 @@ for x in myresult:
 
         print('-'*10)
         print(i,time.time()-t,datetime.datetime.now(),ID)    #,ai_useful_pct,ai_creative_pct,ai_domain,ai_oganic_news)
-        with open('/home/agentai/phawit/news_predict/log.csv', 'a') as f:
+        with open(path+'news_predict/log.csv', 'a') as f:
             writer = csv.writer(f)
             writer.writerow([i,time.time()-t,datetime.datetime.now()])
         i += 1
