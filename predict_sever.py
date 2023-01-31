@@ -15,7 +15,8 @@ path = conf.path
 
 # Batch_size = int(sys.argv[1])
 # print('Batch_size',Batch_size)
-Batch_size = 100   #-----------------------------
+# Batch_size = 100   #-----------------------------
+Batch_size = conf.batch_size
 
 def update_db_list(id, ai_useful_pct, ai_creative_pct, ai_domain, ai_oganic_news):
     V = []
@@ -33,30 +34,31 @@ sqlx = "SELECT id,news_title,news_content FROM newsai WHERE percen_ai_useful_pct
 myresult = db.query(sqlx)
 print('Total Data unlabeled',len(myresult))
 
-ID = []
-content_list = []
 i = 0
 t = time.time()
-for x in myresult:
-    ID.append(str(x[0]))
-    content_list.append(str(x[1]))  #news_title
-    if len(ID) == Batch_size:
+while myresult:
+    b = []
+    if len(myresult) < Batch_size:
+        Batch_size = len(myresult)
+    for i in range(Batch_size):
+        b.append(myresult.pop(0))
 
-        ai_oganic_news = model.predict_fake(content_list)
-        ai_useful_pct = model.predict_useful(content_list)
-        ai_creative_pct = model.predict_opinion(content_list)
-        ai_domain = model.predict_domain(content_list)
+    ID = []
+    content_list = []
+    for x in b:
+        ID.append(str(x[0]))
+        content_list.append(str(x[1]))
 
-        print('-'*10)
-        print(i,time.time()-t,datetime.datetime.now(),ID)    #,ai_useful_pct,ai_creative_pct,ai_domain,ai_oganic_news)
-        with open(path+'news_predict/log.csv', 'a') as f:
-            writer = csv.writer(f)
-            writer.writerow([i,time.time()-t,datetime.datetime.now()])
-        i += 1
-        t = time.time()
+    ai_oganic_news = model.predict_fake(content_list)
+    ai_useful_pct = model.predict_useful(content_list)
+    ai_creative_pct = model.predict_opinion(content_list)
+    ai_domain = model.predict_domain(content_list)
+    
+    print('-'*10)
+    print(i,time.time()-t,datetime.datetime.now(),ID)    #,ai_useful_pct,ai_creative_pct,ai_domain,ai_oganic_news)
+    with open(path+'news_predict/log.csv', 'a') as f:
+        writer = csv.writer(f)
+        writer.writerow([i,time.time()-t,datetime.datetime.now()])
+    i += 1
+    t = time.time()
 
-        update_db_list(ID,ai_useful_pct,ai_creative_pct,ai_domain,ai_oganic_news)
-
-        
-        ID = []
-        content_list = []
