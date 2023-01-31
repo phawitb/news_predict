@@ -8,6 +8,13 @@
   pip install torchvision  
   pip3 install emoji  
   
+gdown  4.6.0  
+transformers  4.26.0  
+torchvision  0.14.1  
+emoji  2.2.0  
+mysql-connector  2.2.9  
+mysql-connector-python   8.0.29  
+  
 **step3 : loadmodels**  
 python3 load_models.py  
   
