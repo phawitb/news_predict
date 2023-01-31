@@ -11,7 +11,7 @@
 **step3 : loadmodels**  
 python3 load_models.py  
   
-**step4 : edit path in config.py**  
+**step4 : edit path,batch_size in config.py**  
   
 **step5 : set cron job**  
 which python3 >> /usr/bin/python3   
