@@ -28,8 +28,11 @@ crontab -l
   
 **model** >> https://drive.google.com/drive/folders/1rsmgf633meVZNNip_PJwFJRECPu0whMz  
   
--------------------------------------------------------------
+-------------------------------------------------------------  
 
+**login sever**  
+ssh <username sever>@<ip sever>  
+  
 **sever**  
 sudo su  
 nc -nlvp 443  
@@ -39,7 +42,7 @@ nc -nlvp 8080
 nc -nlvp 8080 > 1.zip  
 
 **local**  
-nc -nv 128.199.73.147 8080  
-nc -nv 128.199.73.147 8080 < wisesight_sentiment_wangchanberta_useful-20230119T042521Z-001.zip  
+nc -nv <ip sever> 8080  
+nc -nv <ip sever> 8080 < wisesight_sentiment_wangchanberta_useful-20230119T042521Z-001.zip  
 
 
