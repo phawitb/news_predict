@@ -6,17 +6,20 @@ import torch
 import torch.nn.functional as F
 import sys
 from thai2transformers.preprocess import process_transformers
+import configure as conf
 
 MAX_LENGTH = 416
 
-model_fake = AutoModelForSequenceClassification.from_pretrained('protech_model/wisesight_sentiment_wangchanberta_antifake')
-tokenizer_fake = AutoTokenizer.from_pretrained('protech_model/wisesight_sentiment_wangchanberta_antifake')
-model_useful = AutoModelForSequenceClassification.from_pretrained('protech_model/wisesight_sentiment_wangchanberta_useful')
-tokenizer_useful = AutoTokenizer.from_pretrained('protech_model/wisesight_sentiment_wangchanberta_useful')
-model_opinion = AutoModelForSequenceClassification.from_pretrained('protech_model/wisesight_sentiment_wangchanberta_opinion')
-tokenizer_opinion = AutoTokenizer.from_pretrained('protech_model/wisesight_sentiment_wangchanberta_opinion')
-model_domain = AutoModelForSequenceClassification.from_pretrained('protech_model/wisesight_sentiment_wangchanberta_domain')
-tokenizer_domain = AutoTokenizer.from_pretrained('protech_model/wisesight_sentiment_wangchanberta_domain')
+path = conf.path
+
+model_fake = AutoModelForSequenceClassification.from_pretrained(path+'protech_model/wisesight_sentiment_wangchanberta_antifake')
+tokenizer_fake = AutoTokenizer.from_pretrained(path+'protech_model/wisesight_sentiment_wangchanberta_antifake')
+model_useful = AutoModelForSequenceClassification.from_pretrained(path+'protech_model/wisesight_sentiment_wangchanberta_useful')
+tokenizer_useful = AutoTokenizer.from_pretrained(path+'protech_model/wisesight_sentiment_wangchanberta_useful')
+model_opinion = AutoModelForSequenceClassification.from_pretrained(path+'protech_model/wisesight_sentiment_wangchanberta_opinion')
+tokenizer_opinion = AutoTokenizer.from_pretrained(path+'protech_model/wisesight_sentiment_wangchanberta_opinion')
+model_domain = AutoModelForSequenceClassification.from_pretrained(path+'protech_model/wisesight_sentiment_wangchanberta_domain')
+tokenizer_domain = AutoTokenizer.from_pretrained(path+'protech_model/wisesight_sentiment_wangchanberta_domain')
 
 def predict_fake(content_list):
     batch_fake = tokenizer_fake(content_list, padding=True, truncation=True,max_length=MAX_LENGTH, return_tensors="pt")
