@@ -18,7 +18,7 @@ which python3 >> /usr/bin/python3
   
 crontab -e  
 #ทำงานเวลา 22.00น. ในทุกๆวัน  
-MAILTO="phawit.boo@gmail.com"
+MAILTO="phawit.boo@gmail.com"  
 0 22 * * * /usr/bin/python3 /home/agentai/phawit/news_predict/predict_sever.py >> /home/agentai/phawit/log/news_predict.log 2>&1  
   
 crontab -l  
