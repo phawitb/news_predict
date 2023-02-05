@@ -56,7 +56,7 @@ while myresult:
     
     print('-'*10)
     print(i,time.time()-t,datetime.datetime.now(),ID)    #,ai_useful_pct,ai_creative_pct,ai_domain,ai_oganic_news)
-    with open(path+'news_predict/log.csv', 'a') as f:
+    with open(path+'log.csv', 'a') as f:
         writer = csv.writer(f)
         writer.writerow([i,time.time()-t,datetime.datetime.now()])
     i += 1
