@@ -31,7 +31,7 @@ MAILTO="phawit.boo@gmail.com"
 crontab -l  
   
 /etc/init.d/cron start  
-sudo service cron reload
+#sudo service cron reload
   
   
 **model** >> https://drive.google.com/drive/folders/1rsmgf633meVZNNip_PJwFJRECPu0whMz  
